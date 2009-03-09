@@ -1,0 +1,31 @@
+<html>
+<head>
+	<script src="xslt.js" type="text/javascript" charset="utf-8"></script>
+	<script src="mootools/mootools.js" type="text/javascript" charset="utf-8"></script>
+	<script src="mootools/nested.js" type="text/javascript" charset="utf-8"></script>
+	<script src="list.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<p><strong>Tree Builder</strong></p>
+	<table width="408" height="24" border="0">
+	  <tr>
+	    <td><a href="#" onclick="treeAddDaughter(); return false;">Add Daughter</a></td>
+	    <td><a href="#" onclick="treeRename(); return false;">Rename</a></td>
+	    <td><a href="#" onclick="makeTreeMove(); return false;">Syntatic Move</a></td>
+		<td><a href="#" onclick="makeReorder(); return false;">Reorder</a></td>
+	    <td><a href="#" onclick="treeDelete(); return false;">Delete</a></td>
+		<td><a href="#" onclick="saving(); return false;">Generate Output</a></td>
+	  </tr>
+	</table>
+	<div id="treeAnchor"><ul id="mainlist"><li id="S">S</li></ul></div>
+	<div>Bracket notation: 
+	  <input type="text" name="bracket" id="bracket" />
+	  <input type="submit" name="button" id="button" value="Parse" onclick="loading()"/>
+	</div>
+	<p>Output XML:</p>
+	<p>
+	  <textarea name="treeOutput" id="treeOutput" cols="45" rows="5"></textarea>
+	</p>
+<div id="placeholder" style="display:none;"></div>
+</body>
+</html>
