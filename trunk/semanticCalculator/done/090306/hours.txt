@@ -1,0 +1,12 @@
+hours:
+090305 7:30am start
+090305 11am prolog now can readin a file
+090305 11:45am end session
+090305 12:30pm start
+090305 2:40pm check
+090305 3:10pm end session
+090304 4pm prolog ok
+090306 11:30am start
+090306 1pm end session
+090306 5pm start session
+090306 7:20pm end session

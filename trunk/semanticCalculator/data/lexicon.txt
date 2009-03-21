@@ -1,0 +1,35 @@
+Ann:
+  type: N
+  meaning: Ann
+
+Bob:
+  type: N
+  meaning: Bob
+
+Clare:
+  type: N
+  meaning: Clare
+
+smokes:
+  type: ON
+  meaning: X^smokes(X)
+
+student:
+  type: N
+  meaning: X^student(X)
+
+likes:
+  type: ONN
+  meaning: X^Y^likes(Y,X)
+
+drink:
+  type: N
+  meaning: drink
+
+drink:
+  type: ON
+  meaning: X^drink(X)
+
+studies:
+  type: ONN
+  meaning: X^studies(X)

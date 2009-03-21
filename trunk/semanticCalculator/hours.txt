@@ -1,0 +1,27 @@
+hours:
+090305 7:30am start
+090305 11am prolog now can readin a file
+090305 11:45am end session
+090305 12:30pm start
+090305 2:40pm check
+090305 3:10pm end session
+090304 4pm prolog ok
+090306 11:30am start
+090306 1pm end session
+090306 5pm start session
+090306 7:20pm end session
+
+090313 4:45pm start
+090313 7:30pm done
+
+analysing Link parser since 09-03-17 12:00pm with a 1.5hr break.
+above: at 09-03-17 7:15pm
+I decided not to use links - 090317 8:10pm
+
+090318 3:20pm start
+090318 6pm done for now
+ 090318 +2hr. links - if it'll ever be used.
+090320 11 am start (figuring out svn, then main)
+090320 1:15pm stop
+090320 3:15pm start
+090320 5:10pm end. I couldn't make it work this time, better luck next time. I seem to have gotten in a loop of sorts.
