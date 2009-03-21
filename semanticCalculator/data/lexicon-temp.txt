@@ -1,0 +1,10 @@
+<lex>
+<w>	form:	Ann
+	type: 	N
+	semx:	Ann
+</w>
+<w>	form:	Bob
+	type:	N
+	semx:	Bob
+</w>
+</lex>

@@ -1,0 +1,15 @@
+<lex>
+
+<w>
+  <f>Ann</f>
+  <t>e</t>
+  <s>Ann</s>
+</w>
+
+<w>
+  <f>smokes</f>
+  <t>[e,t]</t>
+  <s>X^smokes(X)</s>
+</w>
+
+</lex>

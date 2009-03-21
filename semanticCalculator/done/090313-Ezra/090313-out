@@ -1,0 +1,17 @@
+
+> pl -q -s driver-1.pro -t "r([ann,[likes,bob]])"
+
+[ann, [likes, bob]]
+Type: t
+Meaning: likes(ann, bob).
+
+> pl -q -s driver-1.pro -t "r([ann,smokes])"
+
+[ann, smokes]
+Type: t
+Meaning: smokes(ann).
+
+> pwd
+/usr/home/ae1/pro
+> 
+
