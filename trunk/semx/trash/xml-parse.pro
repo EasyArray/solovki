@@ -1,7 +1,5 @@
-% reconsult shortcut - MODIFY ACCORDINGLY!
-e :- ['/home/ae1/pro/2.pro'].
+e :- ['/home/ae1/pro/xml-parse.pro'].
 
-% execute shortcut - MODIFY ACCORDINGLY!
 r :- Src = '/home/ae1/pro/lex3.txt', exec(Src).
 
 

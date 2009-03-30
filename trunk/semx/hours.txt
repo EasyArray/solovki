@@ -25,3 +25,10 @@ I decided not to use links - 090317 8:10pm
 090320 1:15pm stop
 090320 3:15pm start
 090320 5:10pm end. I couldn't make it work this time, better luck next time. I seem to have gotten in a loop of sorts.
+090324 10:20am start
+090324 11:20am end
+2:20pm start
+
+090329 1:25pm start
+090329 8:50pm start (last one was insignificant)
+090329 10:10pm done, it works

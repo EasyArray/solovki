@@ -1,3 +1,0 @@
-<w><f>Ann</f><t>N</t><s>Ann</s></w>
-<w><f>smokes</f><t>ON</t><s>X^smokes(X)</s></w>
-

@@ -1,0 +1,1 @@
+pl -q -s /home/ae1/pro/go.pro -t "go('/home/ae1/pro/data/lex-1.xml','/home/ae1/pro/data/rules-1.pro',[ann,swears])"

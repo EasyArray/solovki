@@ -2,6 +2,7 @@
 % 
 % tries each interpretation rule until one works
 interpret(Tree, Type, Meaning, G) :-
+%	write(Tree),nl,
 	pa(Tree, Type, Meaning, G), !;
 	tp(Tree, Type, Meaning, G), !;
 	nn(Tree, Type, Meaning), !;
@@ -15,7 +16,7 @@ interpret(Tree, Meaning) :-
 % output version
 interpret(Tree) :-
 	interpret(Tree, Type, Meaning, _),
-	nl, writeln(Tree),
+%	nl, writeln(Tree),
 	print('Type: '), print(Type), nl,
 	print('Meaning: '), portray_clause(Meaning), nl.
 

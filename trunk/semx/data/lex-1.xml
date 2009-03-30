@@ -1,0 +1,39 @@
+<lex>
+
+<w>
+  <f>ann</f>
+  <t>e</t>
+  <s>ann</s>
+</w>
+
+<w>
+  <f>bob</f>
+  <t>e</t>
+  <s>bob</s>
+</w>
+
+<w>
+  <f>clare</f>
+  <t>e</t>
+  <s>clare</s>
+</w>
+
+<w>
+  <f>smokes</f>
+  <t>[e,t]</t>
+  <s>X^smokes(X)</s>
+</w>
+
+<w>
+  <f>drinks</f>
+  <t>[e,t]</t>
+  <s>X^drinks(X)</s>
+</w>
+
+<w>
+  <f>swears</f>
+  <t>[e,t]</t>
+  <s>X^swears(X)</s>
+</w>
+
+</lex>
