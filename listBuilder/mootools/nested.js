@@ -70,7 +70,7 @@ var Nested = new Class({
 		el.depth = this.getDepth(el);
 		el.moved = false;
 		this.bound.movement = this.movement.bindWithEvent(this, el);
-		this.bound.end = this.end.bind(this, el);
+		this.bound.end = this.end.bindWithEvent(this, el);
 		this.list.removeEvent('mousedown', this.bound.start);
 		this.list.addEvent('mousedown', this.bound.end);
 		this.list.addEvent('mousemove', this.bound.movement);
@@ -229,6 +229,7 @@ var Nested = new Class({
 				if (!prevParent.getFirst()) prevParent.dispose();
 			}
 		}
+		preventRename = true;
 		event.stop();
 	},
 
@@ -269,7 +270,7 @@ var Nested = new Class({
 	
 	},
 
-	end: function(el) {
+	end: function(event, el) {
 		if (this.options.ghost) this.ghost.dispose();
 		this.list.removeEvent('mousemove', this.bound.movement);
 		document.removeEvent('mouseup', this.bound.end);
@@ -277,6 +278,9 @@ var Nested = new Class({
 		this.list.addEvent('mousedown', this.bound.start);
 		this.fireEvent('onComplete', el);
 		if (window.ie) $(document.body).removeEvent('drag', this.bound.stop).removeEvent('selectstart', this.bound.stop);
+		//alert("Ending " + ((preventRename) ? 'with' : 'without') + " preventRename.");
+		//event.stop();
+		//return false;
 	}
 });
 

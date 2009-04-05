@@ -1,7 +1,9 @@
 var parentDragged = null;
 var parentParent = null;
-var n = null;
+var n = null; // Selected node
+var tn = null; // Selected tree
 var traceCount = 0;
+var preventRename = false;
 
 function highlightTree(list, val)
 {
@@ -17,18 +19,107 @@ function highlightTree(list, val)
 	}
 }
 
+function renameNode(event)
+{
+	if (preventRename)
+	{
+		//alert("Preventing rename.");
+		preventRename = false;
+		return true;
+	}
+	
+	el = $(event.target);
+	if (el != $$('.selectedNode')[0]) return;
+	
+	var name = prompt("Enter a new name for the node.");
+	if (name == null || name == "") return;
+	
+	el.id = name;
+	//el.innerText = el.innerText.replace(/^.*$/, name);
+	el.firstChild.textContent = name;
+}
+
+function addDaughter(event)
+{
+	el = $(event.target.parentNode);
+	var name = prompt("Enter a name for the new node.");
+	if (name == null || name == "") return;
+	
+	var n = new Element('li');
+	n.innerHTML = name;
+	n.id = name;
+	var ul = $$('#' + el.id + ' > ul')[0];
+	if (ul != undefined)
+	{
+		ul.appendChild(n);
+	}
+	else
+	{
+		ul = new Element('ul');
+		el.appendChild(ul);
+		ul.appendChild(n);
+	}
+	event.stop();
+	return false;
+}
+
+function deselectNode(el)
+{
+	el = $(el);
+	el.removeClass('selectedNode');
+	el.removeEvent('click', renameNode);
+	$('tree_addLink').destroy();
+	n.detach();
+	n = null;
+}
+
+function selectNode(event)
+{
+	el = $(event.target);
+	var a = $$('.selectedNode');
+	if (a.length > 0)
+		deselectNode(a[0]);
+	
+	//el = $(el);
+	if (el.get('tag') != 'li')
+		el = $(el.firstChild);
+	el.addClass('selectedNode');
+	el.addEvent('click', renameNode);
+	
+	var href = new Element('a');
+	href.innerHTML = "[+]";
+	href.href = '#';
+	href.addEvent('click', addDaughter);
+	href.id = "tree_addLink";
+	
+	el.appendChild(href);
+	
+	n = new Nested($('mainlist'), {'lock':'class', 'lockClass':'selectedNode'});
+	preventRename = false;
+}
+
+window.addEvent('domready', function() 
+{
+	$('mainlist').addEvent('click', selectNode);
+});
+
 function makeTreeMove(t)
 {
 	if (n != null)
 	{
-		n.detach();
-		n = null;
+		deselectNode(n.list);
+	}
+	
+	if (tn != null)
+	{
+		tn.detach();
+		tn = null;
 		highlightTree($('mainlist'), false);
 	}
 	else
 	{
 		highlightTree($('mainlist'), true);
-	n = new Nested('mainlist', {
+	tn = new Nested('mainlist', {
 		onStart:function(el)
 		{
 			//Store where the thing that's being dragged was so we can drop a trace later.
@@ -85,6 +176,7 @@ function makeTreeMove(t)
 			//newSul1.appendChild(newSli2);
 		
 			traceCount++;
+			makeTreeMove(null);
 		}});
 	}
 }
@@ -112,10 +204,11 @@ function loading()
 	new Transformation()
 	    .setXml(str)
 	    .setXslt('listTransform.xsl')
-		/*.setCallback(function(t)
+		.setCallback(function(t)
 		{
 			//makeNested(t);
-		})*/
+			$('mainlist').addEvent('click', selectNode);
+		})
 	    .transform('treeAnchor');
 }
 
@@ -135,9 +228,12 @@ function saving()
 		.transform('placeholder');
 }
 
+var bound = null;
+
 function treeCatchClick(treeFunc)
 {
 	if (!$('mainlist')) return;
+	if (bound != null) return;
 	highlightTree($('mainlist'), true);
 	
 	function catchClick(event, list)
@@ -149,12 +245,12 @@ function treeCatchClick(treeFunc)
 		highlightTree($('mainlist'), false);
 		event.stop();
 		list.removeEvent('click', bound);
-
+		bound = null;
 		treeFunc(el);
 	}
 	
 	l = $('mainlist');
-	var bound = catchClick.bindWithEvent(this, l);
+	bound = catchClick.bindWithEvent(this, l);
 	l.addEvent('click', bound);
 }
 
