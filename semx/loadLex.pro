@@ -29,7 +29,8 @@ findTag([Hin|Tin],[Hin|Token],Container,Rest) :-
 	findTag(Tin,Token,Container,Rest).
 
 findWords([]) :- !.
-findWords([10,10]) :- !.
+findWords([13|Rest]) :- !, findWords(Rest).
+findWords([10|Rest]) :- !, findWords(Rest).
 findWords(Lex) :-
 	findTag(Lex,_,[60,119,62],Rest1), % <w>
 	findTag(Rest1,Word,[60,47,119,62],Rest2), % </w>

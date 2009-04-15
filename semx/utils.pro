@@ -13,6 +13,22 @@ test('file2List') :-
 
 %%%%%%%%%%%%%%%%%%%%%%
 
+% define and, or
+
+:- op(1000, xfy, &).  % logical and
+:- op(1000, xfy, v).  % logical or
+
+A & B :-
+	A, B.
+
+A v B :-
+	A; B.
+
+%%%%%%%%%%%%%
+
+% trash
+% dir('/home/ae1/pro/').
+
 file2List(Addr,Out) :-
 	open(Addr,read,In),
 	get_char(In, Char1),
