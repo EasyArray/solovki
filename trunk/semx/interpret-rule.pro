@@ -2,12 +2,14 @@
 % 
 % tries each interpretation rule until one works
 interpret(Tree, Type, Meaning, G) :-
-%	write(Tree),nl,
-	pa(Tree, Type, Meaning, G), !;
-	tp(Tree, Type, Meaning, G), !;
-	nn(Tree, Type, Meaning), !;
-	fa(Tree, Type, Meaning, G), !;
-	pm(Tree, Type, Meaning, G).
+%	pa(Tree, Type, Meaning, G), !;
+%	tp(Tree, Type, Meaning, G), !;
+%	nn(Tree, Type, Meaning), !;
+%	fa(Tree, Type, Meaning, G), !;
+%	pm(Tree, Type, Meaning, G).
+%	write('interpreting '),write(Tree),write(' '),write(Meaning),nl,
+	rule(_,Tree,Type,Meaning,G), !;
+	rule(_,Tree,Type,Meaning), !.
 
 % version without type or assignment function
 interpret(Tree, Meaning) :-
@@ -15,8 +17,8 @@ interpret(Tree, Meaning) :-
 
 % output version
 interpret(Tree) :-
+	writeln(Tree),
 	interpret(Tree, Type, Meaning, _),
-%	nl, writeln(Tree),
 	print('Type: '), print(Type), nl,
 	print('Meaning: '), portray_clause(Meaning), nl.
 
