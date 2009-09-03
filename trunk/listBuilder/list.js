@@ -220,10 +220,22 @@ function saving()
 	    .setXslt('listTransformBack.xsl')
 		.setCallback(function(t)
 		{
-			//var s = new XMLSerializer();
-			//$('outputXML').value = s.serializeToString($('placeholder').firstChild);
-			$('treeOutput').value = $('placeholder').innerHTML;
-			$('bracket').value = $('treeOutput').value.replace(/<\/?tree.*?>/g, '').replace(/<node t="(\w+)">/g, function($0, $1) { return " [." + $1 + ' '; }).replace(/<\/node>/g, ' ]');
+			//var bracket = $('placeholder').innerHTML.replace(/<\/?tree.*?>/g, '').replace(/<node t="(\w+)">/g, function($0, $1) { return " [." + $1 + ' '; }).replace(/<\/node>/g, ' ]');
+			//var bracket = $('placeholder').innerHTML.replace(/<node.*?>/g, '[').replace(/<\/node>/g, ']').replace(/\]\s+\[/g, ',').replace(/<\/?tree.*?>\s+[\]\[]/g, ', ');
+			var bracket = $('placeholder').innerHTML.replace(/<node.*?>/g, '[').replace(/<\/node>/g, ']').replace(/\]\s*\[/g, ',').replace(/<tree.*?>\s*[\]\[]/g, ', ').replace(/(\]\s*)<\/tree>/g,'').replace(/^\s+,\s*/g,'');
+			//alert(bracket);
+			$('treeOutput').value = $('placeholder').innerHTML + "\n" + bracket;
+			/*var req = new Request.HTML({
+				method: 'get',
+				url: "test.php",
+				data: { 'input' :  bracket },
+				//onRequest: function() { alert('Request made. Please wait...'); },
+				//update: $('dispBackend'),
+				onSuccess: function(responseText, responseXML)
+				{ alert('Request completed successfully: ' + responseText);
+					$('treeOutput').value = responseText[0].data; //setStyle('background','#fffea1');
+				}
+			}).send();*/
 		})
 		.transform('placeholder');
 }
