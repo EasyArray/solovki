@@ -1,3 +1,5 @@
+outp(failure, '?', '???').
+
 % interpretation function
 % 
 % tries each interpretation rule until one works
@@ -11,19 +13,15 @@ interpret(Tree, Type, Meaning, G) :-
 	rule(_,Tree,Type,Meaning,G), !;
 	rule(_,Tree,Type,Meaning), !.
 
+% Failure case: binds '?' and '???' to type and meaning.
+interpret(_, Type, Meaning, _) :- 
+	outp(failure, Type, Meaning), !.
+
 % version without type or assignment function
 interpret(Tree, Meaning) :-
 	interpret(Tree, _, Meaning, _).
 
 % output version
 interpret(Tree) :-
-	writeln(Tree),
-	interpret(Tree, Type, Meaning, _),
-	print('Type: '), print(Type), nl,
-	print('Meaning: '), portray_clause(Meaning), nl.
-
-% Ezra, what is this predicate for? vp_
-/*
-portray(A&B) :-
-	print(A), print(' & '), print(B).
-*/
+	interpret(Tree, Type, Meaning, _), !, 
+	print('{"type": "'), print(Type), print('", "meaning": "'), portray_clause(Meaning), print('"}, '), nl.
