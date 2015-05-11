@@ -1,0 +1,1 @@
+This account hosts project Solovki, an implementation of a generative semantic calculator. The generative rules are: predicate modification, functional application, and terminal node. Additional features being implemented are: (1) movement of constituent subtrees, and (2) traces and pronouns.
